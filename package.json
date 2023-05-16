@@ -1,0 +1,32 @@
+{
+  "name": "my-vite-vue3-ts-ssr-template",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev:client": "vite",
+    "dev:ssr": "node --loader ts-node/esm server.ts",
+    "prod": "set NODE_ENV=production && node --loader ts-node/esm server.ts",
+    "build": "pnpm build:client && pnpm build:server",
+    "build:client": "vite build --outDir dist/client --ssrManifest",
+    "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
+    "preview": "vite preview",
+    "prerender": "vite build --ssrManifest --outDir dist/static && pnpm run build:server && node --loader ts-node/esm prerender.ts"
+  },
+  "dependencies": {
+    "@vue/server-renderer": "^3.2.47",
+    "express": "^4.18.2",
+    "pinia": "^2.0.36",
+    "ts-node": "^10.9.1",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.1.2",
+    "@vitejs/plugin-vue": "^4.1.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.2",
+    "vue-tsc": "^1.4.2"
+  }
+}
